@@ -1,0 +1,6 @@
+REM algorithm to find the multiples of any integer.
+Step 1: start
+Step 2:input"enter any integer"; n
+step 3: for (i=1; i<11; i++) and mul = n * i
+step 3: print(n * i = mul)
+step 3: stop

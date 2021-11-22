@@ -1,0 +1,48 @@
+dml - data manupulation language-trigger,insert
+dfl - data filing language-create,making row and column
+-----------------------------------------------------------------------------------------
+use hospital >> run
+create table Account_Transactions(
+ID int,
+TNumber int,
+Deposit money,
+Withdrawl money
+)
+..>>>. run
+CREATE TRIGGER CheckWithdrawl_Amount
+ON Account_Transactions
+FOR INSERT
+AS
+IF (SELECT Withdrawl From inserted) > 80000
+BEGIN
+PRINT 'Withdrawal amount cannot exceed 80000'
+ROLLBACK TRANSACTION
+END
+Insert into Account_transactions values (101,1008,120000,1000000)
+----------------------------------------------------------------------------------------------
+ERROR_NUMBER - Returns the internal number of the error
+ERROR_STATE - Returns the information about the source
+ERROR_SEVERITY - Returns the information about anything from informational errors to errors user of DBA can fix,etc.
+ERROR_LINES - returns the line number at which an error happened on
+ERROR_PROCEDURE - Returns the name of the stored procedure or function
+ERROR_MESSAGE - Returns the most essential information and that ia the messge text of the error
+
+We can solve out the errors using ::
+>>   TRY... CATCH
+----------------------------------------------------------------------------------
+BEGIN TRY 
+SELECT
+1 / 0 AS 'Error Occured' ;
+END TRY
+BEGIN CATCH
+SELECT
+ERROR_NUMBER() AS ErrorNumber
+ERROR_STATE() AS ErrorState
+ERROR_SEVERITY() AS ErrorSeverity
+ERROR_PROCEDURE() AS ErrorProcedure
+ERROR_LINES() AS ErrorLine
+ERROR_MESSAGE() AS ErrorMessage
+END CATCH
+---------------------------------------------------------------------------------
+AND ERROR NO. COMES for eg:
+8134(search in windowsbar this number)

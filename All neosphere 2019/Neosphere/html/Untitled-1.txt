@@ -1,0 +1,9 @@
+
+<
+
+<script>
+function ranesh(){
+    var x=document.getElementById("ab").value;
+alert(x);
+}
+</script>
